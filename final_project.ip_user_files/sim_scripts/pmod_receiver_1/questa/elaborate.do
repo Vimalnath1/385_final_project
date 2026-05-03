@@ -1,0 +1,1 @@
+vopt +acc=npr -l elaborate.log  -L xil_defaultlib -L xilinx_vip -L xpm -L i2s_receiver_v1_0_5 -L unisims_ver -L unimacro_ver -L secureip -work xil_defaultlib xil_defaultlib.pmod_receiver xil_defaultlib.glbl -o pmod_receiver_opt

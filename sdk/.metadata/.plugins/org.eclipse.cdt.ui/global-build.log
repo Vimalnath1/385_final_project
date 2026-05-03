@@ -1,0 +1,37 @@
+Nothing to build in platform 'mb_usb_hdmi_top'
+
+19:24:59 **** Incremental Build of configuration Debug for project mb_final ****
+make all 
+'Building file: ../src/lw_usb_main.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lw_usb_main.o" -IC:/Users/vimal/Documents/ECE_385/final_project/sdk/mb_usb_hdmi_top/export/mb_usb_hdmi_top/sw/mb_usb_hdmi_top/standalone_microblaze_0/bspinclude/include -mno-xl-reorder -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/lw_usb_main.d" -MT"src/lw_usb_main.o" -o "src/lw_usb_main.o" "../src/lw_usb_main.c"
+In file included from ../src/lw_usb_main.c:10:
+C:/Users/vimal/Documents/ECE_385/final_project/sdk/mb_usb_hdmi_top/export/mb_usb_hdmi_top/sw/mb_usb_hdmi_top/standalone_microblaze_0/bspinclude/include/xparameters.h:627:50: warning: initialization of 'volatile struct TEXT_HDMI_STRUCT *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  627 | #define XPAR_HDMI_TEXT_CONTROLLER_0_AXI_BASEADDR 0x44A00000
+      |                                                  ^~~~~~~~~~
+../src/hdmi_text_controller.h:37:54: note: in expansion of macro 'XPAR_HDMI_TEXT_CONTROLLER_0_AXI_BASEADDR'
+   37 | static volatile struct TEXT_HDMI_STRUCT* hdmi_ctrl = XPAR_HDMI_TEXT_CONTROLLER_0_AXI_BASEADDR;
+      |                                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/lw_usb_main.c:11:
+../src/hdmi_text_controller.h:40:21: warning: 'colors' defined but not used [-Wunused-variable]
+   40 | static struct COLOR colors[]={
+      |                     ^~~~~~
+../src/hdmi_text_controller.h:37:42: warning: 'hdmi_ctrl' defined but not used [-Wunused-variable]
+   37 | static volatile struct TEXT_HDMI_STRUCT* hdmi_ctrl = XPAR_HDMI_TEXT_CONTROLLER_0_AXI_BASEADDR;
+      |                                          ^~~~~~~~~
+'Finished building: ../src/lw_usb_main.c'
+' '
+'Building target: mb_final.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -LC:/Users/vimal/Documents/ECE_385/final_project/sdk/mb_usb_hdmi_top/export/mb_usb_hdmi_top/sw/mb_usb_hdmi_top/standalone_microblaze_0/bsplib/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "mb_final.elf"  ./src/lw_usb/HID.o ./src/lw_usb/MAX3421E.o ./src/lw_usb/transfer.o  ./src/hdmi_text_controller.o ./src/lw_usb_main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: mb_final.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size mb_final.elf  |tee "mb_final.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  25216	    500	   3692	  29408	   72e0	mb_final.elf
+'Finished building: mb_final.elf.size'
+' '
+19:25:01 **** Incremental Build of configuration Debug for project mb_final_system ****
+make all 
+Skipping SD card image generation. Reason: "The system project only has applications for microblaze processors."

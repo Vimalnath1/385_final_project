@@ -1,0 +1,2 @@
+pmod_receiver.sv,systemverilog,xil_defaultlib,../../../../final_project.gen/sources_1/ip/pmod_receiver_1/sim/pmod_receiver.sv,
+glbl.v,Verilog,xil_defaultlib,glbl.v

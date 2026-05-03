@@ -1,0 +1,6 @@
+sv xil_defaultlib  \
+"../../../../final_project.gen/sources_1/ip/pmod_receiver_1/sim/pmod_receiver.sv" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_i2s_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_i2s" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="9,200,832.432 ns"></ZoomStartTime>
+      <ZoomEndTime time="9,202,842.241 ns"></ZoomEndTime>
+      <Cursor1Time time="9,201,167.400 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="124"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="19" />
+   <wvobject fp_name="/tb_i2s/mclk" type="logic">
+      <obj_property name="ElementShortName">mclk</obj_property>
+      <obj_property name="ObjectShortName">mclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/sclk" type="logic">
+      <obj_property name="ElementShortName">sclk</obj_property>
+      <obj_property name="ObjectShortName">sclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/lrclk" type="logic">
+      <obj_property name="ElementShortName">lrclk</obj_property>
+      <obj_property name="ObjectShortName">lrclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/left_out" type="array">
+      <obj_property name="ElementShortName">left_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">left_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/right_out" type="array">
+      <obj_property name="ElementShortName">right_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">right_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/sclk_div" type="array">
+      <obj_property name="ElementShortName">sclk_div[1:0]</obj_property>
+      <obj_property name="ObjectShortName">sclk_div[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/lr_count" type="array">
+      <obj_property name="ElementShortName">lr_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">lr_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/MCLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">MCLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">MCLK_PERIOD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rx/ws" type="logic">
+      <obj_property name="ElementShortName">ws</obj_property>
+      <obj_property name="ObjectShortName">ws</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rx/wsd" type="logic">
+      <obj_property name="ElementShortName">wsd</obj_property>
+      <obj_property name="ObjectShortName">wsd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rx/wsp" type="logic">
+      <obj_property name="ElementShortName">wsp</obj_property>
+      <obj_property name="ObjectShortName">wsp</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rx/counter" type="array">
+      <obj_property name="ElementShortName">counter[4:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rx/shift" type="logic">
+      <obj_property name="ElementShortName">shift</obj_property>
+      <obj_property name="ObjectShortName">shift</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rx/data_out" type="array">
+      <obj_property name="ElementShortName">data_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/rx/in" type="logic">
+      <obj_property name="ElementShortName">in</obj_property>
+      <obj_property name="ObjectShortName">in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/tx_out" type="logic">
+      <obj_property name="ElementShortName">tx_out</obj_property>
+      <obj_property name="ObjectShortName">tx_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/sim_left" type="array">
+      <obj_property name="ElementShortName">sim_left[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sim_left[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_i2s/sim_right" type="array">
+      <obj_property name="ElementShortName">sim_right[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sim_right[15:0]</obj_property>
+   </wvobject>
+</wave_config>

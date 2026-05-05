@@ -58,30 +58,9 @@ module clk_maker(
     assign lr_clk=LRclk;
     assign sclk=Sclk;
     logic [2:0] sclk_amount=3'd7;
-    logic [2:0] sclk_other_amount=3'd7;
     logic [7:0] lrclk_amount=8'd255;
     logic [2:0] sclk_counter=3'd0;
-    logic [2:0] sclk_other_counter=3'd0;
     logic [7:0] lrclk_counter=8'd0;
-//    always_ff @(posedge Clk)
-//    begin
-//        if (reset_ah)
-//        begin
-//            sclk_counter<=0;
-//        end
-//        else
-//        begin
-//            if (sclk_other_counter==sclk_other_amount)
-//            begin
-//                sclk_counter<='0;
-//                Sclk_other_in<=~Sclk_o_in;
-//            end
-//            else
-//            begin
-//                sclk_counter<=sclk_counter+1;
-//            end
-//        end
-//    end
     always_ff @(posedge Clk)
     begin
         if (reset_ah)

@@ -3,8 +3,20 @@
 
 # XDC: C:/Users/vimal/Documents/ECE_385/lab_6.1/lab_6.1.srcs/constrs_1/imports/pin_assignment/mb_usb_hdmi_top.xdc
 
+# IP: ip/fir_compiler_0/fir_compiler_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fir_compiler_0 || ORIG_REF_NAME==fir_compiler_0} -quiet] -quiet
+
+# IP: ip/fir_compiler_1/fir_compiler_1.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fir_compiler_1 || ORIG_REF_NAME==fir_compiler_1} -quiet] -quiet
+
 # IP: ip/clk_wiz_0_1/clk_wiz_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==clk_wiz_0 || ORIG_REF_NAME==clk_wiz_0} -quiet] -quiet
+
+# XDC: c:/Users/vimal/Documents/ECE_385/final_project/final_project.gen/sources_1/ip/fir_compiler_0/constraints/fir_compiler_v7_2.xdc
+set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==fir_compiler_0 || ORIG_REF_NAME==fir_compiler_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
+
+# XDC: c:/Users/vimal/Documents/ECE_385/final_project/final_project.gen/sources_1/ip/fir_compiler_1/constraints/fir_compiler_v7_2.xdc
+set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==fir_compiler_1 || ORIG_REF_NAME==fir_compiler_1} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
 # XDC: c:/Users/vimal/Documents/ECE_385/final_project/final_project.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0_board.xdc
 set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==clk_wiz_0 || ORIG_REF_NAME==clk_wiz_0} -quiet] {/inst } ]/inst ] -quiet] -quiet

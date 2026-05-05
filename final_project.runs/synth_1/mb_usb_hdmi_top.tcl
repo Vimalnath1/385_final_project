@@ -70,13 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param tcl.collectionResultDisplayLimit 0
-set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 5
-set_param synth.incrementalSynthesisCache C:/Users/vimal/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-23404-VIMALNATHCOMP/incrSyn
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -105,9 +100,17 @@ read_verilog -library xil_defaultlib -sv {
   C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/imports/design_source/hex_driver.sv
   C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/imports/srcs/load_reg.sv
   C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/imports/new/reg_unit.sv
+  C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/new/reverb.sv
   C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/new/top_level.sv
+  C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/new/vader.sv
   C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/imports/design_source/mb_usb_hdmi_top.sv
 }
+read_ip -quiet C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/ip/fir_compiler_0/fir_compiler_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/vimal/Documents/ECE_385/final_project/final_project.gen/sources_1/ip/fir_compiler_0/constraints/fir_compiler_v7_2.xdc]
+
+read_ip -quiet C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/ip/fir_compiler_1/fir_compiler_1.xci
+set_property used_in_implementation false [get_files -all c:/Users/vimal/Documents/ECE_385/final_project/final_project.gen/sources_1/ip/fir_compiler_1/constraints/fir_compiler_v7_2.xdc]
+
 read_ip -quiet C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/vimal/Documents/ECE_385/final_project/final_project.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/vimal/Documents/ECE_385/final_project/final_project.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xdc]

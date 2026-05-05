@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sat May  2 18:06:35 2026
+| Date         : Mon May  4 22:48:44 2026
 | Host         : VIMALNATHCOMP running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file mb_usb_hdmi_top_control_sets_placed.rpt
 | Design       : mb_usb_hdmi_top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    27 |
-|    Minimum number of control sets                        |    27 |
+| Total control sets                                       |    49 |
+|    Minimum number of control sets                        |    49 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   143 |
+| Unused register locations in slices containing registers |   212 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    27 |
-| >= 0 to < 4        |    18 |
+| Total control sets |    49 |
+| >= 0 to < 4        |    26 |
 | >= 4 to < 6        |     2 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     1 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     6 |
+| >= 16              |    20 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              75 |           21 |
+| No           | No                    | No                     |              99 |           42 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              41 |           13 |
-| Yes          | No                    | No                     |               0 |            0 |
+| No           | Yes                   | No                     |              99 |           33 |
+| Yes          | No                    | No                     |              25 |           14 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              69 |           30 |
+| Yes          | Yes                   | No                     |             245 |           75 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,33 +73,55 @@ Table of Contents
 +----------------------------------+-------------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
 |           Clock Signal           |                  Enable Signal                  |               Set/Reset Signal              | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------------------------+-------------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
+|  Clk_IBUF_BUFG                   | led_syncer[3]/q_i_1__4_n_0                      |                                             |                1 |              1 |         1.00 |
 |  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[11].reg_inst/load[11] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[5].reg_inst/load[5]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[0].reg_inst/load[0]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[1]/q_i_1__6_n_0                      |                                             |                1 |              1 |         1.00 |
 |  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[10].reg_inst/load[10] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[8].reg_inst/load[8]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[2]/q_i_1__5_n_0                      |                                             |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[12].reg_inst/load[12] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[6]/q_i_1__1_n_0                      |                                             |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[14].reg_inst/load[14] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[4]/q_i_1__3_n_0                      |                                             |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[1].reg_inst/load[1]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[2].reg_inst/load[2]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[5]/q_i_1__2_n_0                      |                                             |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[15].reg_inst/load[15] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[5].reg_inst/load[5]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
 |  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[9].reg_inst/load[9]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
 |  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[6].reg_inst/load[6]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[7].reg_inst/load[7]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[15].reg_inst/load[15] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[1].reg_inst/load[1]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[12].reg_inst/load[12] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[13].reg_inst/load[13] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[14].reg_inst/load[14] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[4].reg_inst/load[4]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | gpio_syncer[2]/q_i_1_n_0                        |                                             |                1 |              1 |         1.00 |
 |  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[3].reg_inst/load[3]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[2].reg_inst/load[2]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[7]/q_i_1__0_n_0                      |                                             |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[4].reg_inst/load[4]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[7].reg_inst/load[7]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[8].reg_inst/load[8]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[0]/q_i_1__7_n_0                      |                                             |                1 |              1 |         1.00 |
 | ~PMOD_DA_SCLK_OBUF_BUFG          |                                                 |                                             |                1 |              1 |         1.00 |
-|  Clk_IBUF_BUFG                   |                                                 |                                             |                2 |              3 |         1.50 |
-|  clock_gen/clk_wiz/inst/clk_out1 |                                                 |                                             |                2 |              5 |         2.50 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[13].reg_inst/load[13] | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[0].reg_inst/load[0]   | receiver/reg_unit/reg_gen[0].reg_inst/wsp   |                1 |              1 |         1.00 |
 |  PMOD_DA_SCLK_OBUF_BUFG          | receiver/reg_unit/reg_gen[3].reg_inst/skip_reg  | receiver/counter[4]_i_1_n_0                 |                2 |              5 |         2.50 |
-|  clock_gen/clk_wiz/inst/clk_out1 |                                                 | clock_gen/make_clk/lrclk_counter[7]_i_1_n_0 |                3 |              8 |         2.67 |
-|  PMOD_DA_SCLK_OBUF_BUFG          |                                                 | reset_rtl_0_IBUF                            |                5 |             16 |         3.20 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/out_right[15]_i_1_n_0                  | reset_rtl_0_IBUF                            |                3 |             16 |         5.33 |
-|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/out_left[15]_i_1_n_0                   | reset_rtl_0_IBUF                            |                5 |             16 |         3.20 |
-|  Clk_IBUF_BUFG                   | led_syncer[0]/sel                               | led_syncer[0]/counter[0]_i_1_n_0            |                4 |             16 |         4.00 |
+|  clock_gen/clk_wiz/inst/clk_out1 |                                                 |                                             |                2 |              5 |         2.50 |
+|  clock_gen/clk_wiz/inst/clk_out1 |                                                 | clock_gen/make_clk/lrclk_counter[7]_i_1_n_0 |                2 |              8 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[2]/counter[0]_i_2__9_n_0             | led_syncer[2]/counter[0]_i_1__8_n_0         |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[3]/counter[0]_i_2__8_n_0             | led_syncer[3]/counter[0]_i_1__7_n_0         |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[4]/counter[0]_i_2__7_n_0             | led_syncer[4]/counter[0]_i_1__6_n_0         |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[5]/counter[0]_i_2__6_n_0             | led_syncer[5]/counter[0]_i_1__5_n_0         |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[6]/counter[0]_i_2__5_n_0             | led_syncer[6]/counter[0]_i_1__4_n_0         |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | gpio_syncer[0]/counter[0]_i_2__3_n_0            | gpio_syncer[0]/counter[0]_i_1__2_n_0        |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | gpio_syncer[1]/counter[0]_i_2__2_n_0            | gpio_syncer[1]/counter[0]_i_1__1_n_0        |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | gpio_syncer[2]/counter[0]_i_2__1_n_0            | gpio_syncer[2]/counter[0]_i_1__0_n_0        |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[7]/counter[0]_i_2__4_n_0             | led_syncer[7]/counter[0]_i_1__3_n_0         |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | gpio_syncer[3]/sel                              | gpio_syncer[3]/counter[0]_i_1_n_0           |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[0]/counter[0]_i_2__11_n_0            | led_syncer[0]/counter[0]_i_1__10_n_0        |                4 |             16 |         4.00 |
+|  Clk_IBUF_BUFG                   | led_syncer[1]/counter[0]_i_2__10_n_0            | led_syncer[1]/counter[0]_i_1__9_n_0         |                4 |             16 |         4.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/out_right[15]_i_1_n_0                  | reset_rtl_0_IBUF                            |                5 |             16 |         3.20 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | receiver/out_left[15]_i_1_n_0                   | reset_rtl_0_IBUF                            |                4 |             16 |         4.00 |
+|  PMOD_DA_SCLK_OBUF_BUFG          | lower/clock_gen/make_clk/p_0_in                 |                                             |                5 |             16 |         3.20 |
 |  Clk_IBUF_BUFG                   |                                                 | reset_rtl_0_IBUF                            |                5 |             17 |         3.40 |
-|  PMOD_DA_SCLK_OBUF_BUFG          |                                                 |                                             |               16 |             82 |         5.12 |
+|  Clk_IBUF_BUFG                   |                                                 |                                             |               20 |             27 |         1.35 |
+|  PMOD_DA_SCLK_OBUF_BUFG          |                                                 | gpio_syncer[3]/SR[0]                        |               13 |             32 |         2.46 |
+|  PMOD_DA_SCLK_OBUF_BUFG          |                                                 | reset_rtl_0_IBUF                            |               13 |             42 |         3.23 |
+|  PMOD_DA_SCLK_OBUF_BUFG          |                                                 |                                             |               19 |             66 |         3.47 |
 +----------------------------------+-------------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
 
 

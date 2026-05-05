@@ -115,8 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -124,10 +122,7 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param tcl.collectionResultDisplayLimit 0
-  set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 5
-  set_param synth.incrementalSynthesisCache C:/Users/vimal/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-23404-VIMALNATHCOMP/incrSyn
   set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7s50csga324-1
@@ -148,6 +143,8 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet C:/Users/vimal/Documents/ECE_385/final_project/final_project.runs/synth_1/mb_usb_hdmi_top.dcp
+  read_ip -quiet C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/ip/fir_compiler_0/fir_compiler_0.xci
+  read_ip -quiet C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/ip/fir_compiler_1/fir_compiler_1.xci
   read_ip -quiet C:/Users/vimal/Documents/ECE_385/final_project/final_project.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/vimal/Documents/ECE_385/lab_6.1/lab_6.1.srcs/constrs_1/imports/pin_assignment/mb_usb_hdmi_top.xdc

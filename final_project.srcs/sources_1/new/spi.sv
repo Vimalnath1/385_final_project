@@ -11,15 +11,15 @@ module spi(
     );
 
 // MOSI Command Byte: 000 !R/W LED(4 bits) (Total 8 Bits)
-shift_reg(
-    .Clk(Clk),
-    .Reset(reset),
-    .Shift_In(),
-    .D(data),
-    .Shift_En(),
-    .Shift_Out(MOSI),
-    .Data_Out()
-);
+//shift_reg(
+//    .Clk(Clk),
+//    .Reset(reset),
+//    .Shift_In(),
+//    .D(data),
+//    .Shift_En(),
+//    .Shift_Out(MOSI),
+//    .Data_Out()
+//);
 logic [3:0] counter;
 always_ff @(posedge Clk)
     if (reset)
@@ -28,7 +28,7 @@ always_ff @(posedge Clk)
         end
     else if (start)
         begin
-            SS<=1'b0;
-//            MOSI<= 8'b00010001;
+//            SS<=1'b0;
+            MOSI<= data;
         end
 endmodule

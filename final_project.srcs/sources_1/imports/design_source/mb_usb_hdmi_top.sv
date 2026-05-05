@@ -68,27 +68,42 @@ module mb_usb_hdmi_top(
     output logic [3:0] hex_gridA,
     output logic [7:0] hex_segB,
     output logic [3:0] hex_gridB,
-    input logic led_switch,
+    input logic  [7:0] led_switch,
+    input logic [3:0] gpio,
     output logic [15:0] led
 );
 
-logic led_s;
-assign led[0]=led_s;
-sync_debounce led_syncer [0:0] (
+logic [3:0] gpio_sync;
+logic [7:0] led_s;
+assign led[7:0]=led_s[7:0];
+assign led[15:12]=gpio_sync;
+sync_debounce led_syncer [7:0] (
 		.Clk  (Clk), 
 
 		.d    (led_switch), 
 		.q    (led_s)
 	);
+sync_debounce gpio_syncer [3:0] (
+		.Clk  (Clk), 
 
+		.d    (gpio), 
+		.q    (gpio_sync)
+	);
     logic reset_ah;
     assign reset_ah=reset_rtl_0;
     assign PMOD_DA_MCLK=ad_mclk;
     assign PMOD_DA_SCLK=ad_sclk;
     assign PMOD_DA_LRCLK=ad_lrclk;
+    
     logic signed [15:0] audio_left,audio_right;
+    logic signed [15:0] audio_lower_l,audio_lower_r;
+    logic signed [15:0] low_l,low_r;
     logic signed [15:0] audio_left_r,audio_right_r;
     logic signed [15:0] processed_audio_left,processed_audio_right;
+    logic signed [31:0] reverb_left,reverb_right;
+    logic signed [35:0] lowpass_left,lowpass_right;
+    logic signed [15:0] vader_l,vader_r;
+    
     logic locked;
     clk_gen clock_gen(
         .Clk(Clk),
@@ -107,15 +122,110 @@ sync_debounce led_syncer [0:0] (
         .out_left(audio_left),
         .out_right(audio_right)
     );
+    logic [3:0] counter=4'd0;
+    always_ff @(posedge ad_lrclk)
+    begin
+        counter<=counter+1;
+        if (counter>=4'd12)
+        begin
+            audio_lower_l <= audio_left;
+            audio_lower_r <= audio_right;
+            counter<=4'd0;
+        end
+    end
+    logic [7:0] speed;
+    assign speed=8'd96;
+     
+    pitch_shift lower(
+        .Clk(ad_sclk),
+        .reset(reset_ah),
+        .audio_left(audio_left),
+        .audio_right(audio_right),
+        .out_l(low_l),
+        .out_r(low_r),
+        .speed(speed)
+    );
+    
+    fir_compiler_0 reverb_filter_l(
+        .aclk(ad_sclk),
+        .s_axis_data_tdata(audio_left),
+        .s_axis_data_tvalid(1'b1),
+        .m_axis_data_tdata(reverb_left)
+    );
+    
+    fir_compiler_0 reverb_filter_r(
+        .aclk(ad_sclk),
+        .s_axis_data_tdata(audio_right),
+        .s_axis_data_tvalid(1'b1),
+        .m_axis_data_tdata(reverb_right)
+    );
+    fir_compiler_1 low_filter_l(
+        .aclk(ad_sclk),
+        .s_axis_data_tdata(audio_left),
+        .s_axis_data_tvalid(1'b1),
+        .m_axis_data_tdata(lowpass_left)
+    );
+    
+    fir_compiler_1 low_filter_r(
+        .aclk(ad_sclk),
+        .s_axis_data_tdata(audio_right),
+        .s_axis_data_tvalid(1'b1),
+        .m_axis_data_tdata(lowpass_right)
+    );
+    
+    vader vader(
+        .Clk(ad_sclk),
+        .reset(reset_ah),
+        .audio_left(audio_left),
+        .audio_right(audio_right),
+        .out_l(vader_l),
+        .out_r(vader_r),
+        .enable(led_s[5]),
+        .lr_clk(ad_lrclk)
+    );
+    
     always_ff @(posedge ad_sclk)
     begin
-        if (led_s)
+        if (gpio_sync[1])  //Distort
         begin
             audio_left_r  <= {audio_left[3],audio_left[15:7],audio_left[0],audio_left[1],audio_left[2],audio_left[6:4]};
             audio_right_r <= {audio_right[8:6],audio_right[12:9],audio_right[3],audio_right[2:0],audio_right[5],audio_right[4],audio_right[15:13]};
+//            audio_left_r <={audio_left[0], audio_left[15:1]};
+//            audio_right_r <={audio_right[0], audio_right[15:1]};
+        end
+//        else if (led_s[1])  //Make audio lower
+//        begin
+//            audio_left_r  <= audio_lower_l;
+//            audio_right_r <= audio_lower_r;
+//        end
+//        else if (led_s[2])  //FIR Low Pass
+//        begin
+//            audio_left_r  <= lowpass_left[35:20] + lowpass_left[19];
+//            audio_right_r <= lowpass_right[35:20] + lowpass_right[19];
+//        end
+//        else if (led_s[3])  //FIR reverb
+//        begin
+//            audio_left_r  <= (reverb_left + 32'sd32768) >>> 16;
+//            audio_right_r <= (reverb_right + 32'sd32768) >>> 16;
+//        end
+        else if (gpio_sync[0])  //Pitch Down
+        begin
+            audio_left_r  <= low_l;
+            audio_right_r <= low_r;
+        end
+//        else if (led_s[5])  //Pitch Down
+//        begin
+//            audio_left_r<= vader_l;
+//            audio_right_r<= vader_r;
+//        end
+        else if (gpio_sync[3])
+        begin
+            audio_left_r  <= 0;
+            audio_right_r <= 0;
         end
         else
         begin
+            
             audio_left_r  <= audio_left;
             audio_right_r <= audio_right;
         end
